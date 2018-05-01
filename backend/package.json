@@ -24,10 +24,14 @@
   "scripts": {
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "start": "node src/",
+    "start": "nodemon src/",
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
+    "@feathersjs/authentication": "^2.1.1",
+    "@feathersjs/authentication-jwt": "^2.0.0",
+    "@feathersjs/authentication-local": "^1.1.0",
+    "@feathersjs/authentication-oauth2": "^1.0.3",
     "@feathersjs/configuration": "^1.0.2",
     "@feathersjs/errors": "^3.2.2",
     "@feathersjs/express": "^1.1.2",
@@ -35,8 +39,11 @@
     "@feathersjs/socketio": "^3.0.2",
     "compression": "^1.7.2",
     "cors": "^2.8.4",
+    "feathers-mongoose": "^6.1.0",
     "helmet": "^3.10.0",
+    "mongoose": "^5.0.1",
     "nodemon": "^1.17.3",
+    "passport-google-oauth20": "^1.0.0",
     "serve-favicon": "^2.4.5",
     "winston": "^2.4.0"
   },
