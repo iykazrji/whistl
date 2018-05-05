@@ -33,7 +33,7 @@
       "clientID": "71371696999-fula09rncrh4mc34fqtu39iregh54n61.apps.googleusercontent.com",
       "clientSecret": "9OkMPuNrRUSC2IeoN1tl7LHl",
       "scope": [
-        "profile"
+        "profile", "email"
       ]
     },
     "cookie": {
