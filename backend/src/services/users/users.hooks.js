@@ -21,7 +21,7 @@ const authenticateAfterUserCreate = () => {
         return context.app.service('login').create(user_data, user_params)
           .then(
             auth_response => {
-              context.result.accessToken = auth_response.accessToken
+              // context.result.accessToken = auth_response.accessToken
             }
           )
           .catch(error => {
@@ -33,28 +33,6 @@ const authenticateAfterUserCreate = () => {
   }
 }
 
-const createUserProfile = () => {
-  return context => {
-    console.log(context.params)
-    let strategy = context.data.strategy;
-    if (strategy === "google") {
-      // Create a new user profile with data from google auth
-      console.log(context)
-      // user_data = context.data.payload.user_profile
-      // return context.app.service('profiles').create(user_profile)
-      // .then(
-      //   response => {
-      //     console.log(response)
-      //   }
-      // )
-      // .catch(
-      //   error => {
-      //     console.log(error)
-      //   }
-      // )
-    }
-  }
-}
 module.exports = {
   before: {
     all: [],
@@ -74,7 +52,7 @@ module.exports = {
     ],
     find: [],
     get: [],
-    create: [authenticateAfterUserCreate(), createUserProfile()],
+    create: [authenticateAfterUserCreate()],
     update: [],
     patch: [],
     remove: []

@@ -29,9 +29,10 @@
       "usernameField": "email",
       "passwordField": "password"
     },
-    "google": {
+    "google": { 
       "clientID": "71371696999-fula09rncrh4mc34fqtu39iregh54n61.apps.googleusercontent.com",
       "clientSecret": "9OkMPuNrRUSC2IeoN1tl7LHl",
+      "successRedirect": "http://localhost:3000/auth/google/callback",
       "scope": [
         "profile", "email"
       ]
