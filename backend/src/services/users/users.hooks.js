@@ -5,9 +5,12 @@ const {
 } = require('@feathersjs/authentication-local').hooks;
 
 const authenticateAfterUserCreate = () => {
+  // This Hook is used mainly on Local Auth...
   return context => {
     let strategy = context.data.strategy;
-    let user_params = context.result;
+    let user_params = {
+      user: context.result 
+    };
     switch (strategy) {
       case 'local':
         // Populate the user_data to authenticate...
@@ -16,18 +19,17 @@ const authenticateAfterUserCreate = () => {
           password: context.data.password,
           strategy: 'local'
         }
-
-        // Create a new authentication attempt. If successful we should get and accessToken
+        // Create a new authentication attempt. If successful we should get a JWT token the user can 
+        // Make use of subsequently...
         return context.app.service('login').create(user_data, user_params)
           .then(
             auth_response => {
-              // context.result.accessToken = auth_response.accessToken
+              context.result.jwt_token = auth_response.jwt_token
             }
           )
           .catch(error => {
             console.log(error)
-          })
-          
+          })   
     }
     return context;
   }

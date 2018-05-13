@@ -20,6 +20,7 @@ const createUserOnLogin = () => {
         // Create a User Data object from the @Params Object
         let user_data = {
           googleId: context.params.user.id,
+          email: context.params.user.email
         }
         
         // Call the @Users Service and check if User exists...
@@ -30,7 +31,6 @@ const createUserOnLogin = () => {
         }).then(response => {
           // if the response provides 0 records, create the User...
           if (response.total == '0') {
-            console.log('No records, create user')
             // We can proceed to user creation
             let payload_params = context.data.payload;
 
@@ -121,6 +121,7 @@ module.exports = function (app) {
         }
         // Send Payload to Data Context...
         // Add the @user_data to the Oauth response
+        // The @user_data object would populate the context's @Params object.
         done(null, user_data, payload);
       }
     }
