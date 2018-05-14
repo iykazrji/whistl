@@ -9,6 +9,7 @@ const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
+const auth = require('@feathersjs/authentication');
 
 
 const middleware = require('./middleware');
@@ -31,8 +32,10 @@ app.use(compress());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
+
 // Host the public folder
 app.use('/', express.static(app.get('public')));
+
 
 // Set up Plugins and providers
 app.configure(express.rest());
@@ -50,6 +53,9 @@ app.configure(channels);
 
 // Set up Login route on authentication service
 
+
+// Host the Image upload folder. This would be a protected resource how ever
+app.use('/uploads/photos/', auth.express.authenticate('jwt'), express.static(app.get('img_upload_path')));
 
 
 // Configure a middleware for 404s and the error handler

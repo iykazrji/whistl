@@ -2,6 +2,7 @@
   "host": "localhost",
   "port": 3333,
   "public": "../public/",
+  "img_upload_path": "public/uploads/images",
   "paginate": {
     "default": 10,
     "max": 50
