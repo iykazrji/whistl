@@ -2,6 +2,9 @@
 const createService = require('feathers-mongoose');
 const createModel = require('../../models/uploads.model');
 const hooks = require('./uploads.hooks');
+const blobService = require('feathers-blob');
+const fs = require('fs-blob-store');
+const blobStorage = fs('../../../uploads/images');
 
 module.exports = function (app) {
   const Model = createModel(app);
@@ -14,7 +17,7 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/uploads', createService(options));
+  app.use('/uploads', blobService({ Model: blobStorage}));
 
   // Get our initialized service so that we can register hooks and filters
   const service = app.service('uploads');
