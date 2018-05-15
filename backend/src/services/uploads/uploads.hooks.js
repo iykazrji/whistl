@@ -5,7 +5,9 @@ const convertFileToBase64 = () => {
   return (context) => {
     console.log('Data: ')
     console.log(context.params.file)
-    if (!context.data.uri && context.params.file) {
+
+    // Handle File...
+    if (!context.data.uri && context.params.file ) {
       const file = context.params.file;
       const uri = dauria.getBase64DataURI(file.buffer, file.mimetype);
       context.data = { uri: uri };

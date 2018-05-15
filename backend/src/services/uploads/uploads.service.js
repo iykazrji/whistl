@@ -22,7 +22,6 @@ module.exports = function (app) {
   // Initialize our service with any options it requires
   app.use('/uploads', multipartMiddleware.single('file'),
     function (req, res, next) {
-      console.log(req)
       req.feathers.file = req.file;
       next();
     }, blobService({ Model: blobStorage }));
